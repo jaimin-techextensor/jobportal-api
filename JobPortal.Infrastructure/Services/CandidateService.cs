@@ -20,29 +20,29 @@ namespace JobPortal.Infrastructure.Services
         /// get list of all candidates
         /// </summary>
         /// <returns></returns>
-        public List<Candidate> GetCandidateList(Search search)
+        public PagedList<Candidate> GetCandidateList(Search search)
         {
-            List<Candidate> candidateList;
+            var list = new List<Candidate>();
             try
             {
                 if (!string.IsNullOrEmpty(search.SearchText) && search.SearchText != "null")
                 {
 
-                    candidateList = _context.Candidate.Where(a => a.Email.Contains(search.SearchText) || a.Name.Contains(search.SearchText)
+                    list = _context.Candidate.Where(a => a.Email.Contains(search.SearchText) || a.Name.Contains(search.SearchText)
                                                             || a.PlaceOfBirth.Contains(search.SearchText)).ToList();
                 }
                 else
                 {
-                    candidateList = _context.Candidate.ToList();
+                    list = _context.Candidate.ToList();
                 }
 
-                if (candidateList != null && candidateList.Count > 0)
+                if (list != null && list.Count > 0)
                 {
-                    candidateList = PagedList<Candidate>.ToPagedList(candidateList, search.PageNumber, search.PageSize);
-
                     if (search.SortOrder >= 0 && search.SortBy != null)
                     {
-                        candidateList = SortList(candidateList, search.SortOrder, search.SortBy);
+                        var candidateList = SortList(list, search.SortOrder, search.SortBy);
+                        
+                        return PagedList<Candidate>.ToPagedList(candidateList, search.PageNumber, search.PageSize);
                     }
                 }
             }
@@ -50,7 +50,7 @@ namespace JobPortal.Infrastructure.Services
             {
                 throw;
             }
-            return candidateList;
+            return null;
         }
 
         /// <summary>

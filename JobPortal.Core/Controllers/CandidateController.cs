@@ -24,12 +24,21 @@ namespace JobPortal.Core.Controllers
         {
             try
             {
-               var candidates = _candidateService.GetCandidateList(search);
-                if (candidates == null)
+               var result = _candidateService.GetCandidateList(search);
+                if (result == null)
                 {
                     return NotFound();
                 }
-                return Ok(candidates);
+                var metadata = new
+                {
+                    result.TotalCount,
+                    result.PageSize,
+                    result.CurrentPage,
+                    result.TotalPages,
+                    result.HasNext,
+                    result.HasPrevious
+                };
+                return Ok(new { Success = true, Message = "Retrieved imports overview", PageInfo = metadata, Data = result });
             }
             catch (Exception)
             {

@@ -9,7 +9,7 @@ namespace JobPortal.Infrastructure.Interfaces
         /// get list of all candidates
         /// </summary>
         /// <returns></returns>
-        List<Candidate> GetCandidateList(Search search);
+        PagedList<Candidate> GetCandidateList(Search search);
 
         /// <summary>
         /// get candiate details by candiate id
