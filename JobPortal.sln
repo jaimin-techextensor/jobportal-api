@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32413.511
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobPortal.Core", "JobPortal.Core\JobPortal.Core.csproj", "{4B7647CD-F018-41C9-8EC6-F62AF94107EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobPortal.API", "JobPortal.Core\JobPortal.API.csproj", "{4B7647CD-F018-41C9-8EC6-F62AF94107EF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobPortal.Domain", "JobPortal.Domain\JobPortal.Domain.csproj", "{6096703A-5508-4AF8-BF2F-11BC779EAFF7}"
 EndProject
